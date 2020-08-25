@@ -59,3 +59,25 @@ typings/
 
 # next.js build output
 .next
+
+.DS_Store
+.vscode/
+npm-debug.log
+.idea*
+v5/asset/*
+v5/asset-dev/*
+yarn-error.log
+yarn.lock
+package-lock.json
+node_modules
+.svn*
+v5/src/fonts/*
+!v5/src/fonts/src/
+v5/src/common/index.css
+
+.idea/
+v5/.idea/
+
+v5/node_modules
+stats.json
+dist/
