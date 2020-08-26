@@ -3,7 +3,29 @@
   "version": "1.0.0",
   "description": "webpack构建基本流程",
   "main": "index.js",
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "eslint --fix",
+        "git add"
+      ],
+      "*.jsx": [
+        "eslint --fix",
+        "git add"
+      ],
+      "*.tpl": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/static/**/*.js",
+      "**/config/**",
+      "**/dis/**"
+    ]
+  },
   "scripts": {
+    "precommit": "lint-staged",
     "dev": "webpack --config ./config/webpack.config.dev.js --profile --json > stats.json",
     "start": "webpack-dev-server --config ./config/webpack.config.dev.js --watch --open"
   },
@@ -22,20 +44,33 @@
     "@babel/preset-env": "~7.11.0",
     "@babel/preset-react": "~7.10.4",
     "@babel/preset-typescript": "~7.10.4",
+    "babel-eslint": "~10.1.0",
     "babel-loader": "~8.1.0",
     "clean-webpack-plugin": "~3.0.0",
     "css-loader": "~4.2.1",
+    "eslint": "~7.7.0",
+    "eslint-config-airbnb": "~18.2.0",
+    "eslint-loader": "~4.0.2",
+    "eslint-plugin-babel": "~5.3.1",
+    "eslint-plugin-html": "~6.0.3",
+    "eslint-plugin-import": "~2.22.0",
+    "eslint-plugin-jsx-a11y": "~6.3.1",
+    "eslint-plugin-react": "~7.20.6",
+    "eslint-plugin-react-hooks": "~4.1.0",
     "express": "~4.17.1",
     "file-loader": "~6.0.0",
     "html-webpack-plugin": "~4.3.0",
+    "husky": "~4.2.5",
     "less": "~3.12.2",
     "less-loader": "~7.0.0",
+    "lint-staged": "~10.2.13",
     "mini-css-extract-plugin": "~0.10.0",
     "nodemon": "~2.0.4",
     "npm-run-all": "~4.1.5",
     "postcss-cssnext": "~3.1.0",
     "postcss-loader": "~3.0.0",
     "precss": "~4.0.0",
+    "prettier": "~2.1.1",
     "style-loader": "~1.2.1",
     "url-loader": "~4.1.0",
     "webpack": "~4.44.1",
