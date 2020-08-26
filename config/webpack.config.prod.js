@@ -1,8 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 提取css到单独的文件中
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 const dirConfig = require('./dir.config'); // 路径
@@ -13,11 +12,9 @@ const HtmlPlugin = new HtmlWebpackPlugin({
   filename: 'index.html',
   template: path.join(dirConfig.srcDir, 'index.html')
 });
-/*
-const ClearPlugin = new CleanWebpackPlugin(['dist'], ({
+/*const clearPlugin = new CleanWebpackPlugin(['dist-dev'], {
   root: dirConfig.roots,
-}));
-*/
+});*/
 
 
 module.exports = {
@@ -26,8 +23,8 @@ module.exports = {
   entry: { index: './src/index.js' }, // 相对于webpack的context路径
   output: {
     path: dirConfig.distDir, // 必须绝对路径
-    filename: '[name].js',
-    chunkFilename: '[name].js'
+    filename: '[name].[contenthash:8].js',
+    chunkFilename: '[name].[contenthash:8].js'
   },
   module: {
     rules: [
@@ -39,12 +36,7 @@ module.exports = {
       {
         test: /\.(css|less)$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: { // 由於 CSS 增加了一層的結構，相對的 publicPath 也需增加一層
-              publicPath: '../' // css的url中的图片，替换为：publicPath + image.options(images/[name].[ext])
-            }
-          },
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
           'less-loader'
@@ -62,20 +54,15 @@ module.exports = {
         }],
       },
       {
-        test: /\.(eot|ttf|woff)/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'font/[name].[ext]'
-          }
-        }]
+        test: /\.(eot|ttf|woff|svg)/,
+        use: ['file-loader']
       }
     ]
   },
   plugins: [
     HtmlPlugin,
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
+      filename: 'css/[name].[contenthash:8].css'
     }),
   ],
   optimization: {

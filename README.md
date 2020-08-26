@@ -29,7 +29,6 @@ npm install html-webpack-plugin --save-dev
 npm install webpack-dev-server --save-dev
 
 
-
 babel.config.json:
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"]

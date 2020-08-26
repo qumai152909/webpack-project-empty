@@ -1,0 +1,10 @@
+body {
+  background-color: rgba(0, 206, 209, 0.39);
+  color: #000;
+  display: flex;
+}
+.img {
+  width: 100px;
+  height: 400px;
+  background: url(../images/IMG_5400.jpg) no-repeat center / cover;
+}
